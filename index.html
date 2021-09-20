@@ -17,19 +17,7 @@
   
   <script>
   function generate(){
-    var randomNumber = Math.floor((Math.random() * 3) + 1);
-    switch(randomNumber){
-      case 1:
-        result.innerHTML = "Computer picked Rwok!";
-      break;
-      case 2:
-        result.innerHTML = "Computer picked Papur!";
-      break;
-      case 3:
-        result.innerHTML = "Computer picked Skissors!";
-      break;
-    }
-    
+    result.innerHTML = "Computer picked " +["Rwok!","Papur!","Skissors!"][Math.floor((Math.random() * 3))];
   }
   </script>
 </body>
