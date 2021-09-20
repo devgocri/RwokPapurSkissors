@@ -18,6 +18,9 @@
   <script>
   function generate(){
     result.innerHTML = "Computer picked " +["Rwok!","Papur!","Skissors!"][Math.floor((Math.random() * 3))];
+    setTimeout(function(){
+      result.innerHTML = "";
+    }, 2000);
   }
   </script>
 </body>
