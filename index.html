@@ -23,63 +23,336 @@
           stats.innerHTML = "Games won: " +wins +"<br />Games lost: " +losses;
         }, 2000);
       }
-      function generate(choice){
-        var generatedResult = ["Rwok","Papur","Skissors"][Math.floor((Math.random() * 3))];
-        result.innerHTML = "Computer picked " +generatedResult +"!";
-        if (choice === generatedResult){
-          won.innerHTML = "It's a draw!";
-          clear();
-          return;
-        }
-        if (choice === "Rwok") {
-          if (generatedResult === "Skissors") {
-            won.innerHTML = "You won!";
-            wins += 1;
-            clear();
-            return;
-          }
-          else {
-            won.innerHTML = 'You lost!';
-            losses += 1;
-            clear();
-            return;
-          }
-        }
-        else if (choice === "Papur") {
-          if (generatedResult === "Rwok") {
-            won.innerHTML = "You won!";
-            wins += 1;
-            clear();
-            return;
-          }
-          else {
-            won.innerHTML = 'You lost!';
-            losses += 1;
-            clear();
-            return;
-          }
-        }
-        else {
-          if (generatedResult === "Papur") {
-            won.innerHTML = "You won!";
-            wins += 1;
-            clear();
-            return;
-          }
-          else {
-            won.innerHTML = 'You lost!';
-            losses += 1;
-            clear();
-            return;
-          }
-        }
-      }
-      function clear(){
-        setTimeout(function(){
-          result.innerHTML = "";
-          won.innerHTML = "";
-        }, 3000);
-      }
-    </script>
-  </body>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>RwokPapurSkissors</title>
+        <style>
+            body {
+                background-color: #29292a;
+                color: #ffffff;
+                font-family: system-ui;
+                text-align: center;
+            }
+
+            h1 {
+                padding-top: 10px;
+            }
+
+            #player {
+                float: left;
+                display: inline-block;
+                font-size: 32px;
+                font-weight: bolder;
+            }
+
+            #bot {
+                float: right;
+                display: inline-block;
+                font-size: 32px;
+                font-weight: bolder;
+            }
+
+            .you {
+                float: left;
+                display: inline-block;
+            }
+
+            .comp {
+                float: right;
+                display: inline-block;
+            }
+
+            button {
+                opacity: 0;
+                pointer-events: none;
+            }
+
+            .spacing {
+                margin-top: 5rem;
+            }
+
+            .rwokcontainer {
+                display: inline-block;
+                border-color: #ff9400;
+                border-style: solid;
+                border-width: 1px;
+                width: 100px;
+                height: 100px;
+                box-shadow: 0px 0px 30px 0px rgba(255, 141, 0, 0.73);
+                -webkit-box-shadow: 0px 0px 30px 0px rgba(255, 141, 0, 0.73);
+                -moz-box-shadow: 0px 0px 30px 0px rgba(255, 141, 0, 0.73);
+            }
+
+            .papurcontainer {
+                margin-left: 15px;
+                display: inline-block;
+                border-color: #fff700;
+                border-style: solid;
+                border-width: 1px;
+                width: 100px;
+                height: 100px;
+                box-shadow: 0px 0px 30px 0px rgba(247, 255, 0, 0.73);
+                -webkit-box-shadow: 0px 0px 30px 0px rgba(247, 255, 0, 0.73);
+                -moz-box-shadow: 0px 0px 30px 0px rgba(247, 255, 0, 0.73);
+            }
+
+            .skissorscontainer {
+                margin-left: 15px;
+                display: inline-block;
+                border-color: #38ff00;
+                border-style: solid;
+                border-width: 1px;
+                width: 100px;
+                height: 100px;
+                box-shadow: 0px 0px 30px 0px rgba(34, 255, 0, 0.73);
+                -webkit-box-shadow: 0px 0px 30px 0px rgba(34, 255, 0, 0.73);
+                -moz-box-shadow: 0px 0px 30px 0px rgba(34, 255, 0, 0.73);
+            }
+
+            .white {
+                box-shadow: 0px 0px 30px 0px rgba(255, 255, 255, 0.73);
+                -webkit-box-shadow: 0px 0px 30px 0px rgba(255, 255, 255, 0.73);
+                -moz-box-shadow: 0px 0px 30px 0px rgba(255, 255, 255, 0.73);
+                border-color: #ffffff;
+            }
+
+            .black {
+                box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.73);
+                -webkit-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.73);
+                -moz-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.73);
+                border-color: #000000;
+            }
+
+            .red {
+                box-shadow: 0px 0px 30px 0px rgba(255, 0, 0, 0.73);
+                -webkit-box-shadow: 0px 0px 30px 0px rgba(255, 0, 0, 0.73);
+                -moz-box-shadow: 0px 0px 30px 0px rgba(255, 0, 0, 0.73);
+                border-color: #ff0000;
+            }
+
+            .green {
+                box-shadow: 0px 0px 30px 0px rgba(34, 255, 0, 0.73);
+                -webkit-box-shadow: 0px 0px 30px 0px rgba(34, 255, 0, 0.73);
+                -moz-box-shadow: 0px 0px 30px 0px rgba(34, 255, 0, 0.73);
+                border-color: #38ff00;
+            }
+
+            .results {
+                margin-top: 20px;
+            }
+
+            .scrollableContent {
+                width: 50%;
+                max-height: 150px;
+                overflow: auto;
+                display: inline-block;
+            }
+
+            ol {
+                display: inline-block;
+            }
+
+            .footer {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+            }
+        </style>
+    </head>
+
+    <body onload="score()">
+        <h1>RwokPapurSkissors</h1>
+        <h5>A classic, remade for no reason.</h5>
+        <hr />
+        <p class="you">You</p>
+        <p class="comp">Bot</p>
+        <p id="player">Loading</p>
+        <p id="bot">Loading</p>
+
+        <button onclick="generate('Rwok')">Rwok</button>
+        <button onclick="generate('Papur')">Papur</button>
+        <button onclick="generate('Skissors')">Skissors</button>
+        <div class="spacing"></div>
+        <div class="rwokcontainer" onclick="generate('Rwok')" onmouseover="mouseOver('rwokcontainer')" onmouseout="mouseOut('rwokcontainer')">
+            <h1>🤛</h1>
+        </div>
+        <div class="papurcontainer" onclick="generate('Papur')" onmouseover="mouseOver('papurcontainer')" onmouseout="mouseOut('papurcontainer')">
+            <h1>🤚</h1>
+        </div>
+        <div class="skissorscontainer" onclick="generate('Skissors')" onmouseover="mouseOver('skissorscontainer')" onmouseout="mouseOut('skissorscontainer')">
+            <h1>✌️</h1>
+        </div>
+        <div class="results">
+            <p id="result">⠀</p>
+            <p id="won">⠀</p>
+        </div>
+        <hr />
+        <h2>Past moves</h2>
+        <div class="scrollableContent" id="pastmovesdiv">
+            <ol id="pastmoves"></ol>
+        </div>
+        <div class="footer">
+            <hr />
+            Made with 🍉 by BestCodrEver
+            <hr />
+        </div>
+
+        <script>
+            var wins = 0;
+            var losses = 0;
+
+            function mouseOver(classs) {
+                if (classs === "rwokcontainer") {
+                    var element = document.getElementsByClassName("rwokcontainer")[0];
+                    element.classList.add("white");
+                    var one = document.getElementsByClassName("papurcontainer")[0];
+                    one.classList.add("black");
+                    var two = document.getElementsByClassName("skissorscontainer")[0];
+                    two.classList.add("black");
+                } else if (classs === "papurcontainer") {
+                    var element = document.getElementsByClassName("papurcontainer")[0];
+                    element.classList.add("white");
+                    var one = document.getElementsByClassName("rwokcontainer")[0];
+                    one.classList.add("black");
+                    var two = document.getElementsByClassName("skissorscontainer")[0];
+                    two.classList.add("black");
+                } else if (classs === "skissorscontainer") {
+                    var element = document.getElementsByClassName("skissorscontainer")[0];
+                    element.classList.add("white");
+                    var one = document.getElementsByClassName("rwokcontainer")[0];
+                    one.classList.add("black");
+                    var two = document.getElementsByClassName("papurcontainer")[0];
+                    two.classList.add("black");
+                }
+            }
+
+            function mouseOut(classs) {
+                if (classs === "rwokcontainer") {
+                    var element = document.getElementsByClassName("rwokcontainer")[0];
+                    element.classList.remove("white");
+                    var one = document.getElementsByClassName("papurcontainer")[0];
+                    one.classList.remove("black");
+                    var two = document.getElementsByClassName("skissorscontainer")[0];
+                    two.classList.remove("black");
+                } else if (classs === "papurcontainer") {
+                    var element = document.getElementsByClassName("papurcontainer")[0];
+                    element.classList.remove("white");
+                    var one = document.getElementsByClassName("rwokcontainer")[0];
+                    one.classList.remove("black");
+                    var two = document.getElementsByClassName("skissorscontainer")[0];
+                    two.classList.remove("black");
+                } else if (classs === "skissorscontainer") {
+                    var element = document.getElementsByClassName("skissorscontainer")[0];
+                    element.classList.remove("white");
+                    var one = document.getElementsByClassName("rwokcontainer")[0];
+                    one.classList.remove("black");
+                    var two = document.getElementsByClassName("papurcontainer")[0];
+                    two.classList.remove("black");
+                }
+            }
+
+            function score() {
+                setInterval(function () {
+                    bot.innerHTML = losses;
+                    player.innerHTML = wins;
+                }, 2000);
+            }
+
+            function generate(choice) {
+                var rock = document.getElementsByClassName("rwokcontainer")[0];
+                var paper = document.getElementsByClassName("papurcontainer")[0];
+                var scissors = document.getElementsByClassName("skissorscontainer")[0];
+
+                var generatedResult = ["Rwok", "Papur", "Skissors"][Math.floor(Math.random() * 3)];
+
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode("You -> " + choice + " | Computer -> " + generatedResult));
+                pastmoves.appendChild(li);
+                pastmovesdiv.scrollTop = pastmovesdiv.scrollHeight;
+
+                result.innerHTML = "Computer picked " + generatedResult + "!";
+
+                if (choice === generatedResult) {
+                    won.innerHTML = "It's a draw!";
+                    clear();
+                    return;
+                }
+
+                if (choice === "Rwok") {
+                    if (generatedResult === "Skissors") {
+                        won.innerHTML = "You won!";
+                        rock.classList.add("white");
+                        rock.classList.add("green");
+                        wins += 1;
+                        clear();
+                        return;
+                    } else {
+                        won.innerHTML = "You lost!";
+                        rock.classList.add("white");
+                        rock.classList.add("red");
+                        losses += 1;
+                        clear();
+                        return;
+                    }
+                } else if (choice === "Papur") {
+                    if (generatedResult === "Rwok") {
+                        won.innerHTML = "You won!";
+                        paper.classList.add("white");
+                        paper.classList.add("green");
+                        wins += 1;
+                        clear();
+                        return;
+                    } else {
+                        won.innerHTML = "You lost!";
+                        paper.classList.add("white");
+                        paper.classList.add("red");
+                        losses += 1;
+                        clear();
+                        return;
+                    }
+                } else {
+                    if (generatedResult === "Papur") {
+                        won.innerHTML = "You won!";
+                        scissors.classList.add("white");
+                        scissors.classList.add("green");
+                        wins += 1;
+                        clear();
+                        return;
+                    } else {
+                        won.innerHTML = "You lost!";
+                        scissors.classList.add("white");
+                        scissors.classList.add("red");
+                        losses += 1;
+                        clear();
+                        return;
+                    }
+                }
+            }
+
+            function clear() {
+                var rock = document.getElementsByClassName("rwokcontainer")[0];
+                var paper = document.getElementsByClassName("papurcontainer")[0];
+                var scissors = document.getElementsByClassName("skissorscontainer")[0];
+                setTimeout(function () {
+                    result.innerHTML = "⠀";
+                    won.innerHTML = "⠀";
+                    rock.classList.remove("white");
+                    rock.classList.remove("green");
+                    rock.classList.remove("red");
+                    rock.classList.remove("black");
+                    paper.classList.remove("white");
+                    paper.classList.remove("green");
+                    paper.classList.remove("red");
+                    paper.classList.remove("black");
+                    scissors.classList.remove("white");
+                    scissors.classList.remove("green");
+                    scissors.classList.remove("red");
+                    scissors.classList.remove("black");
+                }, 5000);
+            }
+        </script>
+    </body>
 </html>
