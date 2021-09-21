@@ -1,7 +1,7 @@
 # RwokPapurSkissors
 A Rock Paper Scissors Online Game
 
-Play it [here!](https://bestcodrever.github.io/RwokPapurSkissors)<br/>
+Play it [here](https://bestcodrever.github.io/RwokPapurSkissors)!<br/>
 ![Preview](preview.jpeg)
 
 Status: **NOT FINISHED** (Need to fix the UI for phone users)
