@@ -3,36 +3,25 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>RwokPapurSkissors
-    </title>
+    <title>RwokPapurSkissors</title>
   </head>
   <body onload="score()">
-    <h1>Welcome to RwokPapurSkissors
-    </h1>
-    <h5>What will you pick?
-      </h6>
-    <h6>Note: Please don't spam the buttons :D
-    </h6>
-    <button onclick="generate('Rwok')">Rwok
-    </button>
-    <button onclick="generate('Papur')">Papur
-    </button>
-    <button onclick="generate('Skissors')">Skissors
-    </button>
-    <p id="result">
-    </p>
-    <p id="won">
-    </p>
-    <p id="stats">Loading score...
-    </p>
+    <h1>Welcome to RwokPapurSkissors</h1>
+    <h5>What will you pick?</h5>
+    <h6>Note: Please don't spam the buttons :D</h6>
+    <button onclick="generate('Rwok')">Rwok</button>
+    <button onclick="generate('Papur')">Papur</button>
+    <button onclick="generate('Skissors')">Skissors</button>
+    <p id="result"></p>
+    <p id="won"></p>
+    <p id="stats">Loading scoreboard...</p>
     <script>
       var wins = 0;
       var losses = 0;
       function score(){
         setInterval(function(){
           stats.innerHTML = "Games won: " +wins +"<br />Games lost: " +losses;
-        }
-                    , 2000);
+        }, 2000);
       }
       function generate(choice){
         var generatedResult = ["Rwok","Papur","Skissors"][Math.floor((Math.random() * 3))];
@@ -89,8 +78,7 @@
         setTimeout(function(){
           result.innerHTML = "";
           won.innerHTML = "";
-        }
-                   , 3000);
+        }, 3000);
       }
     </script>
   </body>
