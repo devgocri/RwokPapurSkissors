@@ -259,14 +259,12 @@
                 if (choice === "Rwok") {
                     if (generatedResult === "Skissors") {
                         won.innerHTML = "You won!";
-                        rock.classList.add("white");
                         rock.classList.add("green");
                         wins += 1;
                         clear();
                         return;
                     } else {
                         won.innerHTML = "You lost!";
-                        rock.classList.add("white");
                         rock.classList.add("red");
                         losses += 1;
                         clear();
@@ -275,14 +273,12 @@
                 } else if (choice === "Papur") {
                     if (generatedResult === "Rwok") {
                         won.innerHTML = "You won!";
-                        paper.classList.add("white");
                         paper.classList.add("green");
                         wins += 1;
                         clear();
                         return;
                     } else {
                         won.innerHTML = "You lost!";
-                        paper.classList.add("white");
                         paper.classList.add("red");
                         losses += 1;
                         clear();
@@ -291,14 +287,12 @@
                 } else {
                     if (generatedResult === "Papur") {
                         won.innerHTML = "You won!";
-                        scissors.classList.add("white");
                         scissors.classList.add("green");
                         wins += 1;
                         clear();
                         return;
                     } else {
                         won.innerHTML = "You lost!";
-                        scissors.classList.add("white");
                         scissors.classList.add("red");
                         losses += 1;
                         clear();
