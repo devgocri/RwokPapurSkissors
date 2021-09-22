@@ -135,6 +135,26 @@
                 bottom: 0;
                 width: 100%;
             }
+            
+            @media only screen and (max-width: 360px) {
+
+              .results{
+                font-size: 16px;
+              }
+              
+              .rwokcontainer, .papurcontainer, .skissorscontainer {
+                width: 70px;
+                height: 70px;
+              }
+              
+              .scrollableContent {
+                max-height: 200px;
+              }
+              
+              .rwokcontainer h1, .papurcontainer h1, .skissorscontainer h1{
+                font-size: 20px;
+              }
+            }
         </style>
     </head>
 
@@ -320,7 +340,7 @@
                     scissors.classList.remove("green");
                     scissors.classList.remove("red");
                     scissors.classList.remove("black");
-                }, 3000);
+                }, 5000);
             }
         </script>
     </body>
